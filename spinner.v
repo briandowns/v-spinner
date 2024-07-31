@@ -79,7 +79,7 @@ pub fn (mut s Spinner) set_final_message(fm string) {
 // the given value.
 pub fn (mut s Spinner) set_char_set(cs int) {
 	s.mu.@lock()
-	s.char_set = spinner.character_sets[cs].close()
+	s.char_set = spinner.character_sets[cs].clone()
 	s.mu.unlock()
 }
 
