@@ -29,7 +29,7 @@ pub fn Spinner.new(char_set int) Spinner {
 
 	return Spinner{
 		mu: mu
-		char_set: character_sets[char_set].clone()
+		char_set: spinner.character_sets[char_set].clone()
 		delay: 100 * time.millisecond
 		hide_cursor: false
 		active: false
@@ -79,7 +79,7 @@ pub fn (mut s Spinner) set_final_message(fm string) {
 // the given value.
 pub fn (mut s Spinner) set_char_set(cs int) {
 	s.mu.@lock()
-	s.char_set = character_sets[cs].close()
+	s.char_set = spinner.character_sets[cs].close()
 	s.mu.unlock()
 }
 
@@ -159,17 +159,12 @@ fn (mut s Spinner) erase() {
 	print('\r')
 }
 
-// fn main() {
-// 	mut s := Spinner.new(35)
-// 	s.set_hide_cursor(true)
-// 	s.start()
-// 	time.sleep(10 * time.second) // fake some work
-// 	s.stop()
+// is_active returns the status of the spinner.
+fn (s Spinner) is_active() bool {
+	return s.active
+}
 
-// 	println('we stopped the spinner!')
-// }
-
-const character_sets = {
+pub const character_sets = {
 	0:  ['←', '↖', '↑', '↗', '→', '↘', '↓', '↙']
 	1:  ['▁', '▃', '▄', '▅', '▆', '▇', '█', '▇', '▆', '▅', '▄', '▃', '▁']
 	2:  ['▖', '▘', '▝', '▗']
