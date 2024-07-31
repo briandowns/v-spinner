@@ -51,6 +51,22 @@ pub fn (mut s Spinner) set_delay(delay time.Duration) {
 	s.mu.unlock()
 }
 
+// set_prefix sets the prefix field with
+// the given value.
+pub fn (mut s Spinner) set_prefix(prefix string) {
+	s.mu.@lock()
+	s.prefix = prefix
+	s.mu.unlock()
+}
+
+// set_suffix sets the suffix field with
+// the given value.
+pub fn (mut s Spinner) set_suffix(suffix string) {
+	s.mu.@lock()
+	s.suffix = suffix
+	s.mu.unlock()
+}
+
 // set_final_messagefm sets the final message field with
 // the given value.
 pub fn (mut s Spinner) set_final_message(fm string) {
@@ -131,8 +147,8 @@ pub fn (mut s Spinner) reverse() {
 }
 
 // erase
-fn  (mut s Spinner) erase() {
-	print("\r")
+fn (mut s Spinner) erase() {
+	print('\r')
 }
 
 // fn main() {
@@ -145,7 +161,7 @@ fn  (mut s Spinner) erase() {
 // 	println('we stopped the spinner!')
 // }
 
-const character_sets := {
+const character_sets = {
 	0:  ['←', '↖', '↑', '↗', '→', '↘', '↓', '↙']
 	1:  ['▁', '▃', '▄', '▅', '▆', '▇', '█', '▇', '▆', '▅', '▄', '▃', '▁']
 	2:  ['▖', '▘', '▝', '▗']
