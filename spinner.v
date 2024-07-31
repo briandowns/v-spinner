@@ -67,11 +67,19 @@ pub fn (mut s Spinner) set_suffix(suffix string) {
 	s.mu.unlock()
 }
 
-// set_final_messagefm sets the final message field with
+// set_final_message sets the final message field with
 // the given value.
 pub fn (mut s Spinner) set_final_message(fm string) {
 	s.mu.@lock()
 	s.final_message = fm
+	s.mu.unlock()
+}
+
+// set_char_set sets the character set field with
+// the given value.
+pub fn (mut s Spinner) set_char_set(cs int) {
+	s.mu.@lock()
+	s.char_set = character_sets[cs].close()
 	s.mu.unlock()
 }
 
