@@ -1,10 +1,10 @@
 // Example application that uses all of the available API options.
 module main
 
-import time
+import spinner
 
 fn main() {
-	mut s := Spinner.new(35)
+	mut s := spinner.Spinner.new(35)
 	s.set_hide_cursor(true)
 	s.start()
 	time.sleep(10 * time.second) // simulate some work
